@@ -3,9 +3,9 @@ const fs = require("fs");
 const { v4: uuid } = require("uuid");
 
 const { uploadImage, getImageSignedUrl } = require("../util/awsUtil.js");
-const { formatText } = require("../util/quoteUtil.js");
+const { formatText, getRandomQuoteMessage } = require("../util/quoteUtil.js");
 
-const generateQuoteImage = async ({ name, imageUrl, text = "", date }) => {
+exports.generateQuoteImage = async ({ name, imageUrl, text = "", date }) => {
   // Dimensions for the image
   const width = 1400;
   const height = 700;
@@ -81,4 +81,21 @@ const generateQuoteImage = async ({ name, imageUrl, text = "", date }) => {
   return url;
 };
 
-module.exports = generateQuoteImage;
+exports.getQuoteBlocks = (image_url) => {
+  return {
+    blocks: [
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: getRandomQuoteMessage(),
+        },
+      },
+      {
+        type: "image",
+        image_url,
+        alt_text: "quote",
+      },
+    ],
+  };
+};

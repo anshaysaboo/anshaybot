@@ -1,4 +1,7 @@
-const generateQuoteImage = require("../lib/generateQuoteImage");
+const {
+  generateQuoteImage,
+  getQuoteBlocks,
+} = require("../lib/generateQuoteImage");
 const { getUserProfile } = require("../util/slackUtil");
 
 exports.quoteMeCommand = async ({ command, say, ack }) => {
@@ -15,8 +18,9 @@ exports.quoteMeCommand = async ({ command, say, ack }) => {
       date,
       text,
     });
-    await say(imageUrl);
+    await say(getQuoteBlocks(imageUrl));
   } catch (error) {
     console.error(error);
+    await say("Something went wrong. :sob:");
   }
 };
