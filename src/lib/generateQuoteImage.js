@@ -26,7 +26,7 @@ const generateQuoteImage = async ({ name, imageUrl, text = "", date }) => {
   // Format the quote and render to the canvas
   const quoteX = 1050;
   const quoteY = 150;
-  const lineHeight = 65;
+  const lineHeight = 68;
   const quote = formatText(`\u201C ${text} \u201D`);
   let currentY = quoteY;
   quote.forEach((line, index) => {
