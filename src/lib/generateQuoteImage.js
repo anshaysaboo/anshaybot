@@ -1,4 +1,4 @@
-const { createCanvas, loadImage } = require("canvas");
+const { createCanvas, loadImage, registerFont } = require("canvas");
 const fs = require("fs");
 const { v4: uuid } = require("uuid");
 
@@ -10,6 +10,15 @@ const generateQuoteImage = async ({ name, imageUrl, text = "", date }) => {
   const width = 1400;
   const height = 700;
 
+  // Register fonts
+  registerFont("./src/fonts/TimesNewRoman.ttf", { family: "Times New Roman" });
+  registerFont("./src/fonts/TimesNewRomanBold.ttf", {
+    family: "Times New Roman Bold",
+  });
+  registerFont("./src/fonts/TimesNewRomanItalic.ttf", {
+    family: "Times New Roman Italic",
+  });
+
   // Instantiate the canvas object
   const canvas = createCanvas(width, height);
   const context = canvas.getContext("2d");
@@ -19,7 +28,7 @@ const generateQuoteImage = async ({ name, imageUrl, text = "", date }) => {
   context.fillRect(0, 0, width, height);
 
   // Write quote text
-  context.font = "bold 50pt serif";
+  context.font = `50pt "Times New Roman Bold"`;
   context.textAlign = "center";
   context.fillStyle = "#fff";
 
@@ -35,12 +44,12 @@ const generateQuoteImage = async ({ name, imageUrl, text = "", date }) => {
   });
 
   // Format the name
-  context.font = "regular 30pt serif";
+  context.font = `30pt "Times New Roman"`;
   currentY += 40;
   context.fillText("- " + name, quoteX, currentY);
 
   // Format the date
-  context.font = "italic 20pt serif";
+  context.font = `20pt "Times New Roman Italic"`;
   currentY += 40;
   context.fillText(date, quoteX, currentY);
 
