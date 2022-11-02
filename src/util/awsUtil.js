@@ -20,6 +20,7 @@ exports.getImageSignedUrl = async (key) => {
   const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: key,
+    Expires: 3600 * 24 * 365,
   };
   return s3Client.getSignedUrl("getObject", params);
 };
