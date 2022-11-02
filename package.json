@@ -19,5 +19,8 @@
     "fs": "^0.0.1-security",
     "nodemon": "^2.0.20",
     "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^11.2.3"
   }
 }
