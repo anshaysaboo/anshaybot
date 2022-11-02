@@ -24,9 +24,13 @@ jobs:
           cat > .env << EOF
           ${{ secrets.ENV }}
           EOF
+        #set environment variables
+      - name: Set LD_PRELOAD
+        run: sudo export LD_PRELOAD=/var/task/node_modules/canvas/build/Release/libz.so.1
         #install node modules
       - name: Install NPM dependencies
         run: npm install --production
+        #install serverless offline
       - name: Install serverless-offline
         run: serverless plugin install -n serverless-offline
         #serverless deploy
