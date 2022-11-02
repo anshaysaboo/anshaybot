@@ -27,6 +27,8 @@ jobs:
         #install node modules
       - name: Install NPM dependencies
         run: npm install --production
+      - name: Install serverless-offline
+        run: serverless plugin install -n serverless-offline
         #serverless deploy
       - name: Deploy
         run: sls deploy -s prod
