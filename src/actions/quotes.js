@@ -1,8 +1,9 @@
 const generateQuoteImage = require("../lib/generateQuoteImage");
 const { getUserProfile } = require("../util/slackUtil");
 
-exports.quoteMeCommand = async ({ command, say }) => {
+exports.quoteMeCommand = async ({ command, say, ack }) => {
   try {
+    await ack();
     console.log(command);
     const { display_name, image_512 } = await getUserProfile(command.user_id);
     const text = command.text;
@@ -14,7 +15,7 @@ exports.quoteMeCommand = async ({ command, say }) => {
       date,
       text,
     });
-    say(imageUrl);
+    await say(imageUrl);
   } catch (error) {
     console.error(error);
   }
