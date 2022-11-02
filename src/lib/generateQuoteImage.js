@@ -13,10 +13,13 @@ exports.generateQuoteImage = async ({ name, imageUrl, text = "", date }) => {
   // Register fonts
   registerFont("./src/fonts/TimesNewRoman.ttf", { family: "Times New Roman" });
   registerFont("./src/fonts/TimesNewRomanBold.ttf", {
-    family: "Times New Roman Bold",
+    family: "Times New Roman",
+    weight: "bold",
   });
   registerFont("./src/fonts/TimesNewRomanItalic.ttf", {
-    family: "Times New Roman Italic",
+    family: "Times New Roman",
+    weight: "normal",
+    style: "italic",
   });
 
   // Instantiate the canvas object
@@ -28,7 +31,7 @@ exports.generateQuoteImage = async ({ name, imageUrl, text = "", date }) => {
   context.fillRect(0, 0, width, height);
 
   // Write quote text
-  context.font = `50pt "Times New Roman Bold"`;
+  context.font = `bold 50pt "Times New Roman"`;
   context.textAlign = "center";
   context.fillStyle = "#fff";
 
@@ -49,7 +52,7 @@ exports.generateQuoteImage = async ({ name, imageUrl, text = "", date }) => {
   context.fillText("- " + name, quoteX, currentY);
 
   // Format the date
-  context.font = `20pt "Times New Roman Italic"`;
+  context.font = `italic 20pt "Times New Roman"`;
   currentY += 40;
   context.fillText(date, quoteX, currentY);
 
