@@ -1,6 +1,7 @@
 const { App, AwsLambdaReceiver } = require("@slack/bolt");
 require("dotenv").config();
 
+const reactionAdded = require("./src/middleware/reactionAdded");
 const { quoteMeCommand } = require("./src/actions/quotes");
 
 const awsLambdaReceiver = new AwsLambdaReceiver({
@@ -13,6 +14,7 @@ const app = new App({
 });
 
 app.command("/quoteme", quoteMeCommand);
+app.event("reaction_added", reactionAdded);
 
 module.exports.handler = async (event, context, callback) => {
   const handler = await awsLambdaReceiver.start();
