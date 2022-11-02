@@ -1,11 +1,15 @@
 service: anshaybot
 frameworkVersion: "3"
+useDotenv: true
 provider:
   name: aws
   runtime: nodejs14.x
   environment:
     SLACK_SIGNING_SECRET: ${env:SLACK_SIGNING_SECRET}
     SLACK_BOT_TOKEN: ${env:SLACK_BOT_TOKEN}
+    AWS_ACCESS_KEY: ${env:AWS_ACCESS_KEY}
+    AWS_SECRET_KEY: ${env:AWS_SECRET_KEY}
+    AWS_BUCKET_NAME: ${env:AWS_BUCKET_NAME}
 functions:
   slack:
     handler: app.handler
@@ -15,3 +19,4 @@ functions:
           method: post
 plugins:
   - serverless-offline
+  - serverless-dotenv-plugin
