@@ -9,7 +9,7 @@ exports.generateQuoteImage = async ({ name, imageUrl, text = "", date }) => {
   // Dimensions for the image
   const width = 1400;
   const height = 700;
-
+  //
   // Register fonts
   registerFont("./src/fonts/TimesNewRoman.ttf", { family: "Times New Roman" });
   registerFont("./src/fonts/TimesNewRomanBold.ttf", {
